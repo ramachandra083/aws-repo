@@ -1,0 +1,19 @@
+---
+- name: 1st playbook......
+  hosts: all
+  become: true
+  remote_user: root
+  tasks:
+    - name: Package installation...
+      yum:
+        name: httpd
+        state: latest
+    - name: start the service...
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+    - name: Add content...
+      copy:
+        content: "Hello World Hi Rahul_1\n"
+        dest: /var/www/html/index.html
